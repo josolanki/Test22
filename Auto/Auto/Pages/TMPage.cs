@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Auto.utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Auto.Pages
 {
     public class TMPage 
     {
-     public void CreateTM(IWebDriver driver) 
+      
+
+        public void CreateTM(IWebDriver driver) 
         {
 
             //click on create New Button
@@ -48,11 +51,13 @@ namespace Auto.Pages
             gotoLastPageButton.Click();
             IWebElement newcode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
             gotoLastPageButton.Click();
-            Thread.Sleep(1500);//Hold for 1.5 Seconds
+            //Thread.Sleep(1000);
+
+            Wait.WaitForWebElementtobeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 12);
 
 
-            //check whether new record created or not
-            IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+              //check whether new record created or not
+              IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
             if (newCode.Text == "CS010")
             {
