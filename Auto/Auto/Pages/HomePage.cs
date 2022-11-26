@@ -13,9 +13,9 @@ namespace Auto.Pages
     {
         public void GoToTMPage(IWebDriver driver) 
         {
-           // click on the admistrationPage
+            // click on the admistrationPage
 
-IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             admistrationMenu.Click();
 
             //click on Time&Material module from dropdown
