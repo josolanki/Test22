@@ -22,15 +22,12 @@ namespace Auto.Pages
                 IWebElement UserNameTaxtBox = driver.FindElement(By.Id("UserName"));
                 UserNameTaxtBox.SendKeys("hari");
             }
+
              catch(Exception ex) 
             {
                 Assert.Fail("Turnup Portal did not launch", ex.Message);
             }
-            //identify the username text box and valid username
-
-            IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-            usernameTextbox.SendKeys("hari");
-
+           
             //identify the password and valid password
 
             IWebElement passwordTextbox = driver.FindElement(By.Id("Password"));

@@ -10,6 +10,9 @@ namespace Auto.utilities
     public class CommonDriver
     {
         public static IWebDriver driver;
+
+
+        
     }
 }
 

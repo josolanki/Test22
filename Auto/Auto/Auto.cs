@@ -20,7 +20,6 @@ tMPageObj.CreateTM(driver);
 
 tMPageObj.EditTM(driver);
 
-tMPageObj.DeleteTM(driver); 
 
 
 
