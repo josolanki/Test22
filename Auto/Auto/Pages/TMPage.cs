@@ -1,7 +1,5 @@
 ﻿using Auto.utilities;
-using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +10,11 @@ namespace Auto.Pages
 {
     public class TMPage
     {
+        private object gotothelastpage;
 
-
-        public void CreateTM(IWebDriver driver)
+        public void CreateTM(IWebDriver driver) 
         {
-
-            // click on Create New button
+            //click on Create New button
             Thread.Sleep(1500);
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
             createNewButton.Click();
@@ -34,7 +31,7 @@ namespace Auto.Pages
 
             //Enter code in textbox
             IWebElement code = driver.FindElement(By.Name("Code"));
-            code.SendKeys("CS010");
+            code.SendKeys("250");
 
             //Enter Description
             IWebElement description = driver.FindElement(By.Name("Description"));
@@ -63,7 +60,7 @@ namespace Auto.Pages
             //check whether new record created or not
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (newCode.Text == "CS010")
+            if (newCode.Text == "250")
             {
                 Console.WriteLine("Record created successfully");
             }
@@ -71,71 +68,72 @@ namespace Auto.Pages
             {
                 Console.WriteLine("Record not created successfully");
             }
-
-
         }
-
         public void EditTM(IWebDriver driver)
         {
-            // edit my new Time record and verify the edited value
-            Console.WriteLine("Edit the new Time record");
-
-            // find edit button in last row
-            // replace digit in tr[] with last() to get last row in table
-            //IWebElement lasteditButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
-            //lasteditButton.Click();
-            driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]")).Click();
-
-            // edit the code in the Code textbox, clearing the value before entering the new value
-            IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
-            codeTextbox.Clear();
-            codeTextbox.SendKeys("my edited time code");
-
-            // find and click Save button
-            //IWebElement saveButton2 = driver.FindElement(By.Id("SaveButton"));
-            //saveButton2.Click();
-            driver.FindElement(By.Id("SaveButton")).Click();
             Thread.Sleep(2000);
 
-            // check if edited time record has been updated successfully
-            // find and click on the Go to the last page button
-            //IWebElement lastpageButton2 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-            //lastpageButton2.Click();
-            driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")).Click();
+            IWebElement gotothelastpage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            gotothelastpage.Click();
+            // click edit button
+            IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+            editButton.Click();
 
-            // replace digit in tr[] with last() to get last row in table
-            //IWebElement lastrowCode2 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            // edit code textbox 
+            IWebElement editCodeTextbox = driver.FindElement(By.Id("Code"));
+            editCodeTextbox.Clear();
+            editCodeTextbox.SendKeys("20");
+            Thread.Sleep(1500);
 
-            //if (lastrowCode2.Text == "my edited time code")
-            if (driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]")).Text == "my edited time code")
-            {
-                Console.WriteLine("Time record was edited successfully");
-            }
-            else
-            {
-                Console.WriteLine("Time record wasn't edited successfully");
-                driver.Quit();
-                Environment.Exit(0);
-                //    Console.WriteLine("--program continues to run because I do not know how to stop it");
-            }
+            // edit description textbox
+            IWebElement editDescriptionTextbox = driver.FindElement(By.Id("Description"));
+            editDescriptionTextbox.Clear();
+            editDescriptionTextbox.SendKeys("Auto");
+            Thread.Sleep(1500);
 
-            // delete my edited Time record and verify it was deleted by not finding it in the last row
-            // because I don't know how to extract the total rec cnt from the lower-right corner
-            Console.WriteLine("Delete the new & edited Time record");
+            // edit price per unit textbox
+            IWebElement overlappingTag = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+            IWebElement pricePerUnitTextbox = driver.FindElement(By.Id("Price"));
 
-            // find and click Delete button in last row by replacing digit in tr[] with last()
-            //IWebElement lastdeleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
-            //lastdeleteButton.Click();
-            driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]")).Click();
-            Thread.Sleep(500);
+            overlappingTag.Click();
+            pricePerUnitTextbox.Clear();
+            overlappingTag.Click();
+            pricePerUnitTextbox.SendKeys("50");
 
-            // click OK button in pop-up confirmation window - item is deleted and user remains on last page
-            driver.SwitchTo().Alert().Accept();
-            Thread.Sleep(3000);
+            // click save button
+            IWebElement clickSavebutton = driver.FindElement(By.Id("SaveButton"));
+            clickSavebutton.Click();
+            Thread.Sleep(1500);
+
+            // click go to the last page
+            IWebElement gotothelastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            gotothelastpageButton.Click();
+            Thread.Sleep(1500);
 
 
-           
+            //check if the user save record 
+
+        }
+        public void DeleteTM(IWebDriver driver) 
+        {
             
+
+            Thread.Sleep(2000);
+
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+
+            Thread.Sleep(2000);
+
+            // click delete button
+            IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+            deleteButton.Click();
+            Thread.Sleep(2000);
+
+            // conforming delete ok button
+            driver.SwitchTo().Alert().Accept();
+
+
 
         }
     }

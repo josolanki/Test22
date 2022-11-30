@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using Auto.Pages;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +12,31 @@ namespace Auto.utilities
 {
     public class CommonDriver
     {
-        public static IWebDriver driver;
+       
+        public IWebDriver driver;
+        [OneTimeSetUp]
+
+        public void loginSteps()
+        {
+            driver = new ChromeDriver();
+            //import loginpage here
+            LoginPage loginpageobj = new LoginPage();
+            loginpageobj.LoginAction(driver);
+
+        }
+        [OneTimeTearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
+        }
+
+    }
+
+}
 
 
         
-    }
-}
+    
+
 
 

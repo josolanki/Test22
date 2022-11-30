@@ -44,5 +44,9 @@ namespace Auto.utilities
             }
         }
 
+        internal static void WaitForElementTobeExist(IWebDriver driver, string v1, string v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

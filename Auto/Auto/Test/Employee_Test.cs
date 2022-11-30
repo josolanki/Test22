@@ -34,21 +34,31 @@ namespace Auto.Test
 
         [Test, Order(1)]
 
-        public void CreateEmployeePage()
+        public void CreateEmployee_Test()
 
         {
             // create a new Employee
             EmployeePage createEmployeePageObj = new EmployeePage();
             EmployeePage createEmployeePage = new EmployeePage();
+        }  
 
-
-
+        public void EditEmployee_Test()
+        {
+            EmployeePage employeePageObj = new EmployeePage();
+            employeePageObj.EditEmployee(driver);
 
         }
 
-
-
-
+     public void DeleteEmployee()
+        {
+            EmployeePage employeePageObj = new EmployeePage();
+            employeePageObj.DeleteEmployee(driver);
+        }
+        [TearDown]
+        public new void CloseTestRun()
+        {
+            driver.Quit();
+        }
 
     }
 

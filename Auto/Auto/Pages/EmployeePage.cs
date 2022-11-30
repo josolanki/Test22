@@ -1,12 +1,7 @@
 ﻿using Auto.utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace Auto.Pages
 {
@@ -17,14 +12,7 @@ namespace Auto.Pages
         public void CreateEmployeePage(IWebDriver driver)
                 
         {
-            // Navigate to admistrationPage
-
-            IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a")); 
-            admistrationMenu.Click();
-            Thread.Sleep(500);
-
-            IWebElement Employee = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
-            Employee.Click();
+           
 
             //Click on Create New button
             IWebElement CreatNewButton = driver.FindElement(By.XPath("//*[@id=\'container\']/p/a"));
@@ -33,61 +21,97 @@ namespace Auto.Pages
 
 
             // Enter name is the text box
-            IWebElement EmployeeNameTextBox = driver.FindElement(By.Id("Name"));
-            EmployeeNameTextBox.Click();
+            IWebElement EmployeeNameTextBox = driver.FindElement(By.XPath("//*[@id=\"Name\"]"));
 
             // Enter Username in textbox
-            IWebElement userNameTextBox = driver.FindElement(By.Id("Username"));
+            IWebElement userNameTextBox = driver.FindElement(By.XPath("//*[@id=\"Username\"]"));
             userNameTextBox.SendKeys("Jo");
 
 
             //Enter contact in textbox
-            IWebElement contactTextBox = driver.FindElement(By.Id("ContactDisplay"));
+            IWebElement contactTextBox = driver.FindElement(By.XPath("//*[@id=\"ContactDisplay\"]"));
             contactTextBox.Click();
 
             //Enter passwrod in textbox
-            IWebElement passwordTextBox = driver.FindElement(By.Id("Password"));
+            IWebElement passwordTextBox = driver.FindElement(By.XPath("//*[@id=\"Password\"]"));
             passwordTextBox.SendKeys("troll");
 
             //Enter retype password in tetbo
-            IWebElement reTypePasswortextBox = driver.FindElement(By.Id("RetypePassword"));
+            IWebElement reTypePasswortextBox = driver.FindElement(By.XPath("//*[@id=\"RetypePassword\"]"));
             reTypePasswortextBox.SendKeys("troll");
 
-            //Enter isAdmin in textbox
-            IWebElement isAdminTextBox = driver.FindElement(By.Id("check-box"));
-            isAdminTextBox.Click();
-
             //Enter Vahicle in textbox
-            IWebElement vahicleTextBox = driver.FindElement(By.Id("VehicleId_input"));
+            IWebElement vahicleTextBox = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[7]/div/span[1]/span/input"));
             vahicleTextBox.Click();
-
+            Thread.Sleep(500);
             //Enter group in textbox
-            IWebElement groupDropDown = driver.FindElement(By.XPath("//*[@id=\"groupList_taglist\"]/li/span[1]"));
+            IWebElement groupDropDown = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[8]/div/div/div[1]"));
             groupDropDown.Click();
             Thread.Sleep(2000);
 
             //click on save button
-            IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
+            IWebElement saveButton = driver.FindElement(By.XPath("//*[@id=\"SaveButton\"]"));
             saveButton.Click();
 
-            // check if new Employee record has been created successfully
-            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span"));
-            goToLastPageButton.Click();
+            IWebElement backtolistButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/div/a"));
+            backtolistButton.Click();
+            Thread.Sleep(500);
+            //goto lastpage
+            IWebElement gotoemployeelastpage = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span"));
+            gotoemployeelastpage.Click();
+            //check if Employee record create successfully
+            IWebElement newnameTextbox = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            Assert.That(newnameTextbox.Text == "Jo");
 
+        }
+        public void EditEmployee(IWebDriver driver)
 
-
-
-
-
-
+        {
+            // click on last button
+            IWebElement lastbutton = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span"));
+            lastbutton.Click();
+            Thread.Sleep(500);
+            //click on edit button
+            IWebElement editemployeeButton = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[3]/a[1]"));
+            editemployeeButton.Click();
+            //enter new value in name textbox
+            IWebElement newname = driver.FindElement(By.XPath("//*[@id=\"Name\"]"));
+            newname.Clear();
+            newname.SendKeys("Jes");
+            //click on save button
+            IWebElement save = driver.FindElement(By.XPath("//*[@id=\"SaveButton\"]"));
+            save.Click();
+            //click on back to list button
+            IWebElement backtolist = driver.FindElement(By.XPath("//*[@id=\"container\"]/div/a"));
+            backtolist.Click();
+            // click on last button
+            IWebElement lastpage = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span"));
+            lastpage.Click();
+            IWebElement name = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            Assert.That(name.Text == "Jes", "edit did not work");
 
 
         }
-
-
+        public void DeleteEmployee(IWebDriver driver)
+        {
+            // click on last button
+            IWebElement lastbutton = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span"));
+            lastbutton.Click();
+            Thread.Sleep(500);
+            IWebElement deleteemployeeButton = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[3]/a[2]"));
+            deleteemployeeButton.Click();
+            driver.SwitchTo().Alert().Accept();
+        }
     }
-
 }
-      
+
+
+
+
+
+
+        
+
+     
 
 

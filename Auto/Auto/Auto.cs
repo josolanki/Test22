@@ -2,9 +2,30 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using Auto.Pages;
+using Auto.utilities;
+using OpenQA.Selenium.Support.UI;
+using NUnit.Framework;
 
 IWebDriver driver = new ChromeDriver();
 driver.Manage().Window.Maximize();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Login Page object intialization
 LoginPage loginPageObj = new LoginPage();
@@ -18,7 +39,7 @@ homePageObj.GoToTMPage(driver);
 TMPage tMPageObj = new TMPage();    
 tMPageObj.CreateTM(driver);
 
-tMPageObj.EditTM(driver);
+
 
 
 
