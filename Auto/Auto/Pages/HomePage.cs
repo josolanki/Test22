@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace Auto.Pages
 {
@@ -13,15 +8,14 @@ namespace Auto.Pages
     {
         public void GoToTMPage(IWebDriver driver) 
         {
-            // click on the admistrationPage
+            // navigate to Time and Material Page
+            IWebElement administionDropd = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a/span"));
+            administionDropd.Click();
+            Thread.Sleep(500);
 
-            IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
-            admistrationMenu.Click();
-
-            //click on Time&Material module from dropdown
-            IWebElement timeMaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
-            timeMaterial.Click();
-
+            IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
+            tmOption.Click();
+            Thread.Sleep(2000);
         }
 
         public void CreateEmployeePage(IWebDriver driver)
@@ -30,10 +24,12 @@ namespace Auto.Pages
 
             IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             admistrationMenu.Click();
+            Thread.Sleep(1500);
 
             //click on Time&Material module from dropdown
-            IWebElement timeMaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
-            timeMaterial.Click();
+            IWebElement employeeOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
+            employeeOption.Click();
+            Thread.Sleep(1000);
         }
 
         internal void gotoTMpage(IWebDriver driver)
