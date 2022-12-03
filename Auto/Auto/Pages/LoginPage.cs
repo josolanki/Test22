@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 
@@ -8,13 +9,16 @@ namespace Auto.Pages
     {
         public void LoginAction(IWebDriver driver) 
         {
+            new ChromeDriver();
             driver.Manage().Window.Maximize();
             //launch trunup portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
-
-            //identify valid Username Taxtbox and  valid password
-            IWebElement usernameTextBox = driver.FindElement(By.Id("UserName"));
-            usernameTextBox.SendKeys("hari");
+            
+            
+                //identify valid Username Taxtbox and  valid password
+                IWebElement usernameTextBox = driver.FindElement(By.Id("UserName"));
+                usernameTextBox.SendKeys("hari");
+            
 
             //identify valid password Textbox and enter valid password
             IWebElement passwordTextBox = driver.FindElement(By.Id("Password"));

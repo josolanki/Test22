@@ -1,15 +1,13 @@
 ﻿using Auto.Pages.Utilities;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Auto.Pages
 {
     public class TMPage
-    {
+
+
+ {
         public void CreateTM(IWebDriver driver)
         {
             //identify create new button
@@ -25,13 +23,13 @@ namespace Auto.Pages
 
             //identify code textbox
             IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
-            codeTextbox.SendKeys("C001");
+            codeTextbox.SendKeys("Auto");
             Thread.Sleep(1000);
 
 
             //identify description textbox
             IWebElement descriptionTextbox = driver.FindElement(By.Id("Description"));
-            descriptionTextbox.SendKeys("Glass");
+            descriptionTextbox.SendKeys("Auto");
             Thread.Sleep(1000);
 
             //identify price per unit textbox
@@ -42,7 +40,7 @@ namespace Auto.Pages
             //click save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            
+
             //Thread.Sleep(1500);
             Wait.WaitForWebElementToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 5);
 
@@ -55,18 +53,23 @@ namespace Auto.Pages
             // chech if user has logged in successfully
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (newCode.Text == "C001")
+
+            if (newCode.Text == "Auto")
             {
-                Console.WriteLine("New record created successfully.");
+                Console.WriteLine("New record created successfully");
+
             }
             else
+
             {
                 Console.WriteLine("New record hasn't been created.");
-            }
-        }
 
-        public void EditTM(IWebDriver driver)
-        {
+            }
+
+
+        }      
+         public void EditTM(IWebDriver driver) 
+         {
             Thread.Sleep(2000);
 
             IWebElement gotothelastpage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
@@ -101,7 +104,7 @@ namespace Auto.Pages
             clickSavebutton.Click();
             Thread.Sleep(1500);
 
-           
+
             // click go to the last page
             IWebElement gotothelastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             gotothelastpageButton.Click();
@@ -110,10 +113,10 @@ namespace Auto.Pages
 
             //check if the user save record
 
-        }
-
+         }
         public void DeleteTM(IWebDriver driver)
         {
+
             Thread.Sleep(2000);
 
             IWebElement gotothelastpage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
@@ -123,11 +126,19 @@ namespace Auto.Pages
             // click delete button
             IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             deleteButton.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             // conforming delete ok button
             driver.SwitchTo().Alert().Accept();
 
+
         }
+
+
+
+
+
+
+
     }
 }

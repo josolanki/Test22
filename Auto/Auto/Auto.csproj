@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -17,10 +17,23 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
     <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
     <PackageReference Include="Selenium.Support" Version="4.6.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="107.0.5304.6200" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\solan\.nuget\packages\selenium.webdriver\4.6.0\build\..\manager\linux\selenium-manager" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\solan\.nuget\packages\selenium.webdriver\4.6.0\build\..\manager\macos\selenium-manager" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\solan\.nuget\packages\selenium.webdriver\4.6.0\build\..\manager\windows\selenium-manager.exe" />
   </ItemGroup>
 
 </Project>
