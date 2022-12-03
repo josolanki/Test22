@@ -1,7 +1,4 @@
-﻿using Auto.Pages.Utilities;
-using OpenQA.Selenium;
-using System.Security.Cryptography.X509Certificates;
-
+﻿
 namespace Auto.Pages
 {
     public class TMPage

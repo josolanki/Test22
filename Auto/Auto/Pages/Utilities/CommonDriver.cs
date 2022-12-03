@@ -1,21 +1,31 @@
 ﻿
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using OpenQA.Selenium.Chrome;
 
 namespace Auto.Pages.Utilities
 {
     public class CommonDriver
     {
-        
-        
-        public static IWebDriver driver;
+        //public static IWebDriver driver;
+        public IWebDriver driver;
+
+        //[SetUp]
+        [OneTimeSetUp]
+        public void LoginSteps()
+
+        {
+            driver = new ChromeDriver();
+            //import loginpage here
+            LoginPage loginpageobj = new LoginPage();
+            loginpageobj.LoginAction(driver);
+
+        }
+        [OneTimeTearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
+        }
+
     }
-        
-       
-    
 }

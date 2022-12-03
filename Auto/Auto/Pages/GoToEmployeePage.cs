@@ -1,14 +1,10 @@
-﻿using Auto.Pages.Utilities;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+
 
 namespace Auto.Pages
 {
-    public class EmployeePage : CommonDriver
+    public class GoToEmployeePage : CommonDriver
     {
         public void CreateEmployee(IWebDriver driver)
         {
@@ -31,11 +27,11 @@ namespace Auto.Pages
             IWebElement retypepasswordTextbox = driver.FindElement(By.XPath("//*[@id=\"RetypePassword\"]"));
             retypepasswordTextbox.SendKeys("Tas");
             //enter value in Vehicle Textbox
-            // IWebElement vehicleTextbox = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[7]/div/span[1]/span/input"));
+             IWebElement vehicleTextbox = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[7]/div/span[1]/span/input"));
             //   nameTextbox.SendKeys("car");
             //enter value in Groups Textbox
-            // IWebElement groupTextbox = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[8]/div/div/div[1]"));
-            // groupTextbox.SendKeys("Group");
+             IWebElement groupTextbox = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[8]/div/div/div[1]"));
+             groupTextbox.SendKeys("Group");
 
             //click on save button
             IWebElement saveemployeeButton = driver.FindElement(By.XPath("//*[@id=\"SaveButton\"]"));
