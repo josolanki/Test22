@@ -4,7 +4,7 @@
 
 namespace Auto.Pages
 {
-    public class GoToEmployeePage : CommonDriver
+    public class EmployeePage : CommonDriver
     {
         public void CreateEmployee(IWebDriver driver)
         {

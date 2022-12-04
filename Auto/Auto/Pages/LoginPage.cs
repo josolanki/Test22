@@ -13,9 +13,9 @@ namespace Auto.Pages
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
             
             
-                //identify valid Username Taxtbox and  valid password
-                IWebElement usernameTextBox = driver.FindElement(By.Id("UserName"));
-                usernameTextBox.SendKeys("hari");
+             //identify valid Username Taxtbox and  valid password
+             IWebElement usernameTextBox = driver.FindElement(By.Id("UserName"));
+              usernameTextBox.SendKeys("hari");
             
 
             //identify valid password Textbox and enter valid password

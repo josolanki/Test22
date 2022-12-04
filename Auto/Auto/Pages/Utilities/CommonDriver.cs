@@ -7,10 +7,8 @@ namespace Auto.Pages.Utilities
 {
     public class CommonDriver
     {
-        //public static IWebDriver driver;
         public IWebDriver driver;
 
-        //[SetUp]
         [OneTimeSetUp]
         public void LoginSteps()
 
@@ -22,7 +20,7 @@ namespace Auto.Pages.Utilities
 
         }
         [OneTimeTearDown]
-        public void CloseTestRun()
+            public void CloseTestRun()
         {
             driver.Quit();
         }

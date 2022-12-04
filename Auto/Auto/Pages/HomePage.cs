@@ -18,8 +18,8 @@ namespace Auto.Pages
             Thread.Sleep(2000);
         }
 
-        public void CreateEmployeePage(IWebDriver driver)
-        {
+        public void GoToEmployeePage(IWebDriver driver)
+        {   
             // click on the admistrationPage
 
             IWebElement admistrationMenu = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
@@ -30,11 +30,7 @@ namespace Auto.Pages
             IWebElement employeeOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             employeeOption.Click();
             Thread.Sleep(1000);
-        }
-
-        internal void gotoTMpage(IWebDriver driver)
-        {
-            throw new NotImplementedException();
+       
         }
     }
 
