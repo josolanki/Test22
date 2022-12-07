@@ -1,4 +1,5 @@
 ﻿using Automation22.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -50,26 +51,32 @@ namespace Automation22.NewPages
             // click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            //Thread.Sleep(2000);
-
-            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\\\"tmsGrid\\\"]/div[4]/a[4]/span", 5);
+            Thread.Sleep(2000);
 
             // check if new time record has been created successfully
-            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton.Click();
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-
-            if (newCode.Text == "Auto")
-            {
-                Console.WriteLine("Time record created successfully");
-            }
-            else
-            {
-                Console.WriteLine("Time reocrd hasnt been created");
-            }
+           
+            
+            //Example 2
+            Assert.That(newCode.Text == "Auto", "Actual code and expected code doesnt match");
+            
+            
+            
+            
+            ////Example 2
+            //if (newCode.Text == "Auto")
+            //{
+            //    Assert.Pass("Time record created successfully");
+            //}
+            //else
+            //{
+            //    Assert.Fail("Time reocrd hasnt been created");
+            //}
         }
-        public void EditTM(IWebDriver driver) 
+         public void EditTM(IWebDriver driver) 
         {
             //go to last page
             IWebElement GoToLastPagebutton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
