@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Automation22.Utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,9 @@ namespace Automation22.NewPages
             // click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
+
+            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\\\"tmsGrid\\\"]/div[4]/a[4]/span", 5);
 
             // check if new time record has been created successfully
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
