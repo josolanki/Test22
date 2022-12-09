@@ -18,7 +18,7 @@ When I updated '<Description>' on and exsiting time record
 Then  I update '<Description>', '<Code>', '<Price>' on an existing time record
 
 Examples:
- | Descrtiption   | 
- |  code          |  
- |  Time          | 
- |  EditedRecord  | 
+ | Descrtiption   | Code  | Price |
+ | Time           |Jo     | 100   |      |
+ | Material       |wire   | 200   |
+ |EditRecord      |Mouse  |1200   |

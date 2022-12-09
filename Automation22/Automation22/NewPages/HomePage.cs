@@ -20,5 +20,21 @@ namespace Automation22.NewPages
             tmOption.Click();
 
         }
+        public void GotoEmployeePage(IWebDriver driver)
+        {
+            Thread.Sleep(3000);
+            // click Administration button
+            IWebElement administrationButton = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a/span"));
+            administrationButton.Click();
+            Thread.Sleep(1500);
+
+            // identify time&meterials button
+            IWebElement employeeOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
+            employeeOption.Click();
+            Thread.Sleep(1000);
+
+
+        }
+
     }
 }
