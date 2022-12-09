@@ -73,12 +73,7 @@ namespace Automation22
             Assert.That(editedCode == code, "Actual code and expected code do not match");
             Assert.That(editedPrice == price, "Actual price and expected price do not match");
         }
-        [Given(@"I logged into Turnup Portal page successfully")]
-        public void GivenILoggedIntoTurnupPortalPageSuccessfully()
-        {
-            throw new PendingStepException();
-        }
-
+       
     }
 }
  
