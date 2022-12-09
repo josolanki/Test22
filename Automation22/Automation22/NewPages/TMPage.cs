@@ -1,6 +1,7 @@
 ﻿using Automation22.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,12 +57,13 @@ namespace Automation22.NewPages
             // check if new time record has been created successfully
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton.Click();
+            Thread.Sleep(2000);
 
-            IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            //IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
            
             
-            //Example 2
-            Assert.That(newCode.Text == "Auto", "Actual code and expected code doesnt match");
+            ////Example 2
+            //Assert.That(newCode.Text == "Auto", "Actual code and expected code doesnt match");
             
             
             
@@ -76,7 +78,25 @@ namespace Automation22.NewPages
             //    Assert.Fail("Time reocrd hasnt been created");
             //}
         }
-         public void EditTM(IWebDriver driver) 
+         public string GetCode(IWebDriver driver) 
+         {
+            IWebElement actualCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return actualCode.Text;
+         }
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement actualDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return actualDescription.Text;
+        }
+
+        public string GetPrice(IWebDriver driver)
+        {
+            IWebElement actualPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return actualPrice.Text;
+        }
+
+
+        public void EditTM(IWebDriver driver, string Descrtiption)
         {
             //go to last page
             IWebElement GoToLastPagebutton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
@@ -97,7 +117,7 @@ namespace Automation22.NewPages
             // edit descrtiption box
             IWebElement descriptiontextbox = driver.FindElement(By.Id("Description"));
             descriptiontextbox.Clear();
-            descriptiontextbox.SendKeys("Auto1");
+            descriptiontextbox.SendKeys("Descrtiption");
 
             //editbutton price per unit textbox
             IWebElement overlappingTag = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
@@ -118,26 +138,40 @@ namespace Automation22.NewPages
             IWebElement gotothelastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             gotothelastpageButton.Click();
             Thread.Sleep(1500);
-
-
         }
-
-        public void DeleteTM(IWebDriver driver) 
+        
+         public string GetEditDescription(IWebDriver driver)
+         {
+                IWebElement editDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+                return editDescription.Text;
+          }
+        public string GetEditedCode(IWebDriver driver)
         {
-            //go to last page
-            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-            goToLastPageButton.Click();
-
-            // click delete button
-            Thread.Sleep(3000);
-            IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
-            deleteButton.Click();
-            Thread.Sleep(1500);
-
-            // conforming delete ok button
-            driver.SwitchTo().Alert().Accept();
-
-            
+            IWebElement editedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return editedCode.Text;
         }
+
+        public string GetEditedPrice(IWebDriver driver)
+        {
+            IWebElement editedPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return editedPrice.Text;
+        }
+        public void DeleteTM(IWebDriver driver) 
+            
+            {
+                //go to last page
+                IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+                goToLastPageButton.Click();
+
+                // click delete button
+                Thread.Sleep(3000);
+                IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+                deleteButton.Click();
+                Thread.Sleep(1500);
+
+                // conforming delete ok button
+                driver.SwitchTo().Alert().Accept();
+            }
+        
     }
 }

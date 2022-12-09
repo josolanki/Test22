@@ -6,59 +6,43 @@ using Automation22.Utilities;
 
 namespace Automation22.Tests
 {
-    [TestFixture]   
-    public class Tm_Tests : CommonDriver
-
+    [TestFixture]
+    [Parallelizable]
+    public class TM_Tests : CommonDriver
     {
-        [SetUp]
-        public void LoginSteps() 
+        [Test, Order(1), Description("Check if user is able to create a new record with valid data")]
+        public void CreatTM_Test()
         {
-             driver = new ChromeDriver();
-            //Login page object intilaztion and defination
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginActions(driver);
-
-            // home page intilization and defination
+            // Home page object initialization and definition
             HomePage homePageObj = new HomePage();
             homePageObj.GoToTmPage(driver);
-        }
-        [Test]
-        public void CreateTM_Test() 
-        {
+
+
             //TM page intilization and defination
             TMPage tmpageObj = new TMPage();
             tmpageObj.CreateTM(driver);
         }
-        [Test]
-        public void EditTM_Test() 
+        [Test, Order(2), Description("Check if user is able to edit an existing record with valid data")]
+        public void EditTM_Test()
         {
+            // Home page object initialization and definition
+            HomePage homePageObj = new HomePage();
+            homePageObj.GoToTmPage(driver);
+
             TMPage tmPageObj = new TMPage();
-            tmPageObj.CreateTM(driver);
-          
+            //tmPageObj.EditTM(driver);
+
         }
-        [Test]
-        public void DeleteTM_Test() 
+        [Test, Order(3), Description("Check if user is able to delete existing record successfully")]
+        public void DeleteTM_Test()
         {
+            // Home page object initialization and definition
+            HomePage homePageObj = new HomePage();
+            homePageObj.GoToTmPage(driver);
             TMPage tmpaageObj = new TMPage();
             tmpaageObj.DeleteTM(driver);
-            
+
         }
-        [TearDown]
-        public void CloseTestrun() 
-        {
-        driver.Quit();  
-        }
-        
-        
-      
 
-      
-
-       
-
-      
-
-
-      
     }
 }

@@ -14,21 +14,14 @@ namespace Automation22.Tests
     [Parallelizable]
     public class Employee_Test : CommonDriver
     {
-        [SetUp]
-        public void LoginSteps()
-        {
-            driver = new ChromeDriver();
-            // Login page object initialization and definition
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginActions(driver);         
-            HomePage homepageobj = new HomePage();  
-            homepageobj.GotoEmployeePage(driver);
-
-        }
 
         [Test, Order(1)]
         public void CreateEmployee_Test()
         {
+            HomePage homepageobj = new HomePage();
+            homepageobj.GotoEmployeePage(driver);
+
+
             EmployeePage employeePageObj = new EmployeePage();
             employeePageObj.CreateEmployee(driver);
 
@@ -37,6 +30,9 @@ namespace Automation22.Tests
         [Test, Order(2)]
         public void EditEmployee()
         {
+            HomePage homepageobj = new HomePage();
+            homepageobj.GotoEmployeePage(driver);
+
             EmployeePage employeePageObj = new EmployeePage();
             employeePageObj.EditEmployee(driver);
         }
@@ -44,15 +40,17 @@ namespace Automation22.Tests
         [Test, Order(3)]
         public void DeleteEmployee()
         {
+            HomePage homepageobj = new HomePage();
+            homepageobj.GotoEmployeePage(driver);
+
+
             EmployeePage employeePageObj = new EmployeePage();
             employeePageObj.DeleteEmployee(driver);
         }
-
-        [TearDown]
-        public void CloseTestRun()
-        {
-            driver.Quit();
-        }
     }
+  
+
+
+    
 }
 
