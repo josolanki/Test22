@@ -20,10 +20,10 @@ namespace Auto.Pages.Utilities
 
         }
         [OneTimeTearDown]
-            public void CloseTestRun()
+        public void CloseTestRun() 
         {
-            driver.Quit();
+           driver.Close();
         }
-
+       
     }
 }

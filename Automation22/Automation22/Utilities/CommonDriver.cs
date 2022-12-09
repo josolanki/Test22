@@ -1,4 +1,6 @@
 ﻿
+using OpenQA.Selenium.Chrome;
+
 namespace Automation22.Utilities
 {
     public class CommonDriver
@@ -8,11 +10,12 @@ namespace Automation22.Utilities
 
         public void LoginSteps() 
         {
+            driver = new ChromeDriver();
             //Login page object intilaztion and defination
             LoginPage loginPageObj = new LoginPage();
             loginPageObj.LoginActions(driver);
         }
-        [TearDown]
+        [OneTimeTearDown]
         public void CloseTestrun()
         {
             driver.Quit();
